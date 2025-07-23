@@ -52,12 +52,12 @@ const pandora = new PandoraMusic.default({});
 //   { title: "漂移", artist: "周杰伦", color: "#e17055" },
 // ];
 
-pandora.pushMusic({
-  coverImgUrl: "封面",
-  singer: "歌手",
-  src: "地址",
-  title: "主题",
-});
+// pandora.pushMusic({
+//   coverImgUrl: "封面",
+//   singer: "歌手",
+//   src: "地址",
+//   title: "主题",
+// });
 
 // 当前显示的歌曲列表 - 开始为空
 let songs = [];
