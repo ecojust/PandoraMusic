@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>音乐星空</title>
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+  <body>
+    <!-- 星空背景 -->
+    <div class="stars" id="stars"></div>
+
+    <!-- 音乐宇宙 -->
+    <div class="music-universe">
+      <!-- 中心播放器 -->
+      <div class="center-player" id="centerPlayer">
+        <div class="player-icon">♪</div>
+      </div>
+
+      <!-- 歌曲轨道容器 -->
+      <div id="songContainer"></div>
+    </div>
+
+    <!-- 控制面板 -->
+    <div class="control-panel">
+      <button class="control-btn" id="prevBtn">⏮</button>
+      <button class="control-btn" id="playBtn">▶</button>
+      <button class="control-btn" id="nextBtn">⏭</button>
+      <div class="now-playing" id="nowPlaying">选择一首歌曲开始播放</div>
+    </div>
+  </body>
+
+  <script src="./lib.js"></script>
+  <script src="./index.js"></script>
+</html>
