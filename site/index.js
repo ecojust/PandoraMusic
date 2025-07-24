@@ -383,14 +383,41 @@ async function addRandomSong() {
     };
 
     // 检查是否已经存在相同的歌曲
-    const isDuplicate = songs.some(
+    const duplicateIndex = songs.findIndex(
       (existingSong) =>
         existingSong.title === newSong.title &&
-        existingSong.singer === newSong.singer
+        existingSong.artist === newSong.artist
     );
 
-    if (isDuplicate) {
-      console.log(`歌曲 ${newSong.title} 已存在，跳过添加`);
+    if (duplicateIndex !== -1) {
+      // 如果存在重复歌曲，替换数据
+      console.log(`歌曲 ${newSong.title} 已存在，替换数据`);
+
+      // 保留原有的颜色，但更新其他数据
+      newSong.color = songs[duplicateIndex].color;
+      songs[duplicateIndex] = newSong;
+
+      // 更新界面中对应的歌曲元素
+      const existingSongElement = document.querySelector(
+        `[data-song-id="${newSong.title}"]`
+      );
+      if (existingSongElement) {
+        // 更新歌曲信息显示
+        existingSongElement.innerHTML = `
+          <div class="song-title">${newSong.title}</div>
+          <div class="song-artist">${newSong.artist}</div>
+        `;
+
+        // 如果这首歌正在播放，更新当前播放的歌曲数据
+        if (
+          currentSong &&
+          currentSong.title === newSong.title &&
+          currentSong.artist === newSong.artist
+        ) {
+          currentSong = newSong;
+        }
+      }
+
       return;
     }
 
