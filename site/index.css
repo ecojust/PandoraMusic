@@ -25,6 +25,8 @@ body {
   background: transparent;
 }
 
+
+
 .star {
   position: absolute;
   background: white;
@@ -177,6 +179,66 @@ body {
   gap: 20px;
   align-items: center;
   border: 1px solid rgba(255, 255, 255, 0.2);
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+/* 播放时的控制面板流动效果 */
+.control-panel.playing {
+  background: linear-gradient(
+    -45deg,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 107, 107, 0.15),
+    rgba(78, 205, 196, 0.15),
+    rgba(116, 185, 255, 0.15),
+    rgba(255, 255, 255, 0.1)
+  );
+  background-size: 400% 400%;
+  animation: panelFlow 4s ease infinite;
+  box-shadow: 0 8px 32px rgba(255, 255, 255, 0.1);
+}
+
+@keyframes panelFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* 播放时的按钮流动效果 */
+.control-panel.playing .control-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.control-panel.playing .control-btn::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  animation: buttonShimmer 2s linear infinite;
+}
+
+@keyframes buttonShimmer {
+  0% {
+    transform: translateX(-100%) translateY(-100%) rotate(45deg);
+  }
+  100% {
+    transform: translateX(100%) translateY(100%) rotate(45deg);
+  }
 }
 
 .control-btn {
@@ -185,9 +247,13 @@ body {
   color: white;
   font-size: 20px;
   cursor: pointer;
-  padding: 10px;
+  width: 45px;
+  height: 45px;
   border-radius: 50%;
   transition: all 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .control-btn:hover {

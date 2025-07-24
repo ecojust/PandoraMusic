@@ -80,6 +80,22 @@ function createStars() {
   }
 }
 
+// 激活底部播放器流动效果
+function activatePlayerFlow() {
+  const controlPanel = document.querySelector(".control-panel");
+  if (controlPanel) {
+    controlPanel.classList.add("playing");
+  }
+}
+
+// 停用底部播放器流动效果
+function deactivatePlayerFlow() {
+  const controlPanel = document.querySelector(".control-panel");
+  if (controlPanel) {
+    controlPanel.classList.remove("playing");
+  }
+}
+
 // 添加新歌曲到界面
 function addSongToUI(song, index) {
   const container = document.getElementById("songContainer");
@@ -181,6 +197,9 @@ function removeSong(song) {
     isPlaying = false;
     document.getElementById("playBtn").textContent = "▶";
 
+    // 停止底部播放器流动效果
+    deactivatePlayerFlow();
+
     // 停止音频播放
     if (window.currentAudio) {
       window.currentAudio.pause();
@@ -257,6 +276,9 @@ function playSong(song, element) {
   element.classList.add("playing");
   isPlaying = true;
 
+  // 激活底部播放器流动效果
+  activatePlayerFlow();
+
   // 更新显示
   document.getElementById(
     "nowPlaying"
@@ -332,9 +354,13 @@ document.getElementById("playBtn").addEventListener("click", () => {
         console.error("恢复播放失败:", error);
       });
       document.querySelector(".playing")?.classList.add("playing");
+      // 激活底部播放器流动效果
+      activatePlayerFlow();
     } else {
       window.currentAudio.pause();
       document.querySelector(".playing")?.classList.remove("playing");
+      // 停止底部播放器流动效果
+      deactivatePlayerFlow();
     }
   }
 });
@@ -449,31 +475,6 @@ async function addRandomSong() {
     }
   } catch (error) {
     console.error("获取歌曲失败:", error);
-
-    // 错误处理：使用备用歌曲
-    // const availableSongs = songPool.filter(
-    //   (poolSong) =>
-    //     !songs.some((existingSong) => existingSong.title === poolSong.title)
-    // );
-
-    // if (availableSongs.length > 0) {
-    //   const randomIndex = Math.floor(Math.random() * availableSongs.length);
-    //   const selectedSong = availableSongs[randomIndex];
-
-    //   songs.push(selectedSong);
-    //   addSongToUI(selectedSong, songs.length - 1);
-
-    //   setTimeout(() => {
-    //     rearrangeSongs();
-    //   }, 600);
-
-    //   console.log(
-    //     `添加备用歌曲: ${selectedSong.title} - ${selectedSong.artist}`
-    //   );
-    // } else {
-    //   console.log("没有更多备用歌曲可添加");
-    //   clearTimeout(songTimer);
-    // }
   }
 }
 
