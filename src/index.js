@@ -47,32 +47,4 @@ class PandoraMusic {
   }
 }
 
-// 导出主类和工具函数
-
-export const utils = {
-  /**
-   * 格式化音乐时长
-   * @param {number} seconds - 秒数
-   * @returns {string} 格式化后的时长
-   */
-  formatDuration(seconds = 0) {
-    const minutes = Math.floor(seconds / 60);
-    const remainingSeconds = seconds % 60;
-    return `${minutes}:${remainingSeconds.toString().padStart(2, "0")}`;
-  },
-
-  /**
-   * 验证音乐数据格式
-   * @param {Object} musicData - 音乐数据
-   * @returns {boolean} 是否有效
-   */
-  validateMusicData(musicData) {
-    return (
-      musicData &&
-      typeof musicData.title === "string" &&
-      typeof musicData.url === "string"
-    );
-  },
-};
-
 export default PandoraMusic;

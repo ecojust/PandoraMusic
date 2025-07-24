@@ -1,22 +1,6 @@
 /**
- * 通用HTTP请求库 - 支持Node.js和浏览器环境
+ * 通用HTTP请求库
  */
-
-// 检测运行环境
-const isNode = typeof window === "undefined" && typeof global !== "undefined";
-const isBrowser = typeof window !== "undefined";
-
-// Node.js环境下的HTTP模块
-let http, https, url;
-if (isNode) {
-  try {
-    http = require("http");
-    https = require("https");
-    url = require("url");
-  } catch (e) {
-    console.warn("Node.js modules not available");
-  }
-}
 
 /**
  * 默认配置

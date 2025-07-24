@@ -1,65 +1,7 @@
+console.log(PandoraMusic);
+
 const pandora = new PandoraMusic.default({});
 
-// 歌曲池 - 所有可用的歌曲
-// const songPool = [
-//   { title: "夜曲", artist: "周杰伦", color: "#ff6b6b" },
-//   { title: "青花瓷", artist: "周杰伦", color: "#4ecdc4" },
-//   { title: "稻香", artist: "周杰伦", color: "#45b7d1" },
-//   { title: "告白气球", artist: "周杰伦", color: "#f9ca24" },
-//   { title: "晴天", artist: "周杰伦", color: "#6c5ce7" },
-//   { title: "七里香", artist: "周杰伦", color: "#a29bfe" },
-//   { title: "简单爱", artist: "周杰伦", color: "#fd79a8" },
-//   { title: "听妈妈的话", artist: "周杰伦", color: "#00b894" },
-//   { title: "菊花台", artist: "周杰伦", color: "#e17055" },
-//   { title: "东风破", artist: "周杰伦", color: "#81ecec" },
-//   { title: "发如雪", artist: "周杰伦", color: "#fab1a0" },
-//   { title: "千里之外", artist: "周杰伦", color: "#00cec9" },
-//   { title: "蒲公英的约定", artist: "周杰伦", color: "#e84393" },
-//   { title: "彩虹", artist: "周杰伦", color: "#00b894" },
-//   { title: "不能说的秘密", artist: "周杰伦", color: "#6c5ce7" },
-//   { title: "花海", artist: "周杰伦", color: "#fd79a8" },
-//   { title: "世界末日", artist: "周杰伦", color: "#fdcb6e" },
-//   { title: "爱在西元前", artist: "周杰伦", color: "#e17055" },
-//   { title: "安静", artist: "周杰伦", color: "#74b9ff" },
-//   { title: "回到过去", artist: "周杰伦", color: "#55a3ff" },
-//   { title: "星晴", artist: "周杰伦", color: "#fd79a8" },
-//   { title: "龙卷风", artist: "周杰伦", color: "#fdcb6e" },
-//   { title: "开不了口", artist: "周杰伦", color: "#e84393" },
-//   { title: "黑色幽默", artist: "周杰伦", color: "#636e72" },
-//   { title: "可爱女人", artist: "周杰伦", color: "#ff7675" },
-//   { title: "完美主义", artist: "周杰伦", color: "#74b9ff" },
-//   { title: "半岛铁盒", artist: "周杰伦", color: "#00cec9" },
-//   { title: "暗号", artist: "周杰伦", color: "#a29bfe" },
-//   { title: "分裂", artist: "周杰伦", color: "#fd79a8" },
-//   { title: "爷爷泡的茶", artist: "周杰伦", color: "#00b894" },
-//   { title: "困兽之斗", artist: "周杰伦", color: "#e17055" },
-//   { title: "双截棍", artist: "周杰伦", color: "#fdcb6e" },
-//   { title: "忍者", artist: "周杰伦", color: "#6c5ce7" },
-//   { title: "最后的战役", artist: "周杰伦", color: "#636e72" },
-//   { title: "威廉古堡", artist: "周杰伦", color: "#e84393" },
-//   { title: "双刀", artist: "周杰伦", color: "#00cec9" },
-//   { title: "梯田", artist: "周杰伦", color: "#55a3ff" },
-//   { title: "娘子", artist: "周杰伦", color: "#fd79a8" },
-//   { title: "止战之殇", artist: "周杰伦", color: "#74b9ff" },
-//   { title: "本草纲目", artist: "周杰伦", color: "#00b894" },
-//   { title: "退后", artist: "周杰伦", color: "#e17055" },
-//   { title: "红模仿", artist: "周杰伦", color: "#fdcb6e" },
-//   { title: "心雨", artist: "周杰伦", color: "#6c5ce7" },
-//   { title: "白色风车", artist: "周杰伦", color: "#a29bfe" },
-//   { title: "迷迭香", artist: "周杰伦", color: "#fd79a8" },
-//   { title: "麦芽糖", artist: "周杰伦", color: "#00cec9" },
-//   { title: "珊瑚海", artist: "周杰伦", color: "#74b9ff" },
-//   { title: "漂移", artist: "周杰伦", color: "#e17055" },
-// ];
-
-// pandora.pushMusic({
-//   coverImgUrl: "封面",
-//   singer: "歌手",
-//   src: "地址",
-//   title: "主题",
-// });
-
-// 当前显示的歌曲列表 - 开始为空
 let songs = [];
 let currentSong = null;
 let isPlaying = false;
@@ -307,11 +249,11 @@ function playSong(song, element) {
 
     // 设置音频事件监听
     audio.addEventListener("loadstart", () => {
-      console.log("开始加载音频:", song.title);
+      // console.log("开始加载音频:", song.title);
     });
 
     audio.addEventListener("canplay", () => {
-      console.log("音频可以播放:", song.title);
+      // console.log("音频可以播放:", song.title);
     });
 
     audio.addEventListener("error", (e) => {
@@ -433,7 +375,6 @@ async function addRandomSong() {
       return;
     }
 
-    console.log("获取到的歌曲数据:", apiSong);
     const newSong = {
       title: apiSong.title || apiSong.name || "未知歌曲",
       artist: apiSong.artist || apiSong.singer || "未知歌手",
@@ -464,7 +405,7 @@ async function addRandomSong() {
       rearrangeSongs();
     }, 600);
 
-    console.log(`添加歌曲: ${newSong.title} - ${newSong.artist}`);
+    // console.log(`添加歌曲: ${newSong.title} - ${newSong.artist}`);
 
     // 检查是否需要自动开始播放
     // checkAutoPlay();

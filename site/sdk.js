@@ -10,23 +10,8 @@
   "use strict";
 
   /**
-   * 通用HTTP请求库 - 支持Node.js和浏览器环境
+   * 通用HTTP请求库
    */
-
-  // 检测运行环境
-  const isNode = typeof window === "undefined" && typeof global !== "undefined";
-
-  // Node.js环境下的HTTP模块
-  let http, https, url;
-  if (isNode) {
-    try {
-      http = require("http");
-      https = require("https");
-      url = require("url");
-    } catch (e) {
-      console.warn("Node.js modules not available");
-    }
-  }
 
   /**
    * 默认配置
@@ -99,7 +84,7 @@
      */
     async pullMusic(query) {
       try {
-        // console.log(`正在拉取音乐: ${query}`);
+        console.log(`正在拉取音乐: ${query}`);
         const url = `${this.config.apiUrl}pullMusic`;
         return await request.get(url);
       } catch (error) {
@@ -113,6 +98,7 @@
      * @returns {Promise<Object>} 推送结果
      */
     async pushMusic(musicData) {
+      console.log("musicData", musicData);
       try {
         console.log("正在推送音乐数据...");
 
@@ -124,36 +110,9 @@
     }
   }
 
-  // 导出主类和工具函数
-
-  const utils = {
-    /**
-     * 格式化音乐时长
-     * @param {number} seconds - 秒数
-     * @returns {string} 格式化后的时长
-     */
-    formatDuration(seconds = 0) {
-      const minutes = Math.floor(seconds / 60);
-      const remainingSeconds = seconds % 60;
-      return `${minutes}:${remainingSeconds.toString().padStart(2, "0")}`;
-    },
-
-    /**
-     * 验证音乐数据格式
-     * @param {Object} musicData - 音乐数据
-     * @returns {boolean} 是否有效
-     */
-    validateMusicData(musicData) {
-      return (
-        musicData &&
-        typeof musicData.title === "string" &&
-        typeof musicData.url === "string"
-      );
-    },
-  };
-
   exports.default = PandoraMusic;
-  exports.utils = utils;
 
   Object.defineProperty(exports, "__esModule", { value: true });
+
+  // return PandoraMusic;
 });
