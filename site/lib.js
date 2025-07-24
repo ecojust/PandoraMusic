@@ -99,7 +99,7 @@
      */
     async pullMusic(query) {
       try {
-        console.log(`正在拉取音乐: ${query}`);
+        // console.log(`正在拉取音乐: ${query}`);
         const url = `${this.config.apiUrl}pullMusic`;
         return await request.get(url);
       } catch (error) {
