@@ -137,7 +137,9 @@ function removeSong(song) {
   ) {
     currentSong = null;
     isPlaying = false;
-    document.getElementById("playBtn").textContent = "▶";
+    const playBtnImg = document.getElementById("playBtn").querySelector("img");
+    playBtnImg.src = "./play.png";
+    playBtnImg.alt = "播放";
 
     // 停止底部播放器流动效果
     deactivatePlayerFlow();
@@ -225,7 +227,8 @@ function playSong(song, element) {
   document.getElementById(
     "nowPlaying"
   ).textContent = `${song.title} - ${song.artist}`;
-  document.getElementById("playBtn").textContent = "⏸";
+  document.getElementById("playBtn").querySelector("img").src = "./pause.png";
+  document.getElementById("playBtn").querySelector("img").alt = "暂停";
 
   // 更新中心播放器颜色
   const centerPlayer = document.getElementById("centerPlayer");
@@ -289,9 +292,11 @@ function playSong(song, element) {
 document.getElementById("playBtn").addEventListener("click", () => {
   if (currentSong && window.currentAudio) {
     isPlaying = !isPlaying;
-    document.getElementById("playBtn").textContent = isPlaying ? "⏸" : "▶";
+    const playBtnImg = document.getElementById("playBtn").querySelector("img");
 
     if (isPlaying) {
+      playBtnImg.src = "./pause.png";
+      playBtnImg.alt = "暂停";
       window.currentAudio.play().catch((error) => {
         console.error("恢复播放失败:", error);
       });
@@ -299,11 +304,16 @@ document.getElementById("playBtn").addEventListener("click", () => {
       // 激活底部播放器流动效果
       activatePlayerFlow();
     } else {
+      playBtnImg.src = "./play.png";
+      playBtnImg.alt = "播放";
       window.currentAudio.pause();
       document.querySelector(".playing")?.classList.remove("playing");
       // 停止底部播放器流动效果
       deactivatePlayerFlow();
     }
+  } else {
+    // 播放新歌曲
+    playRandomSong();
   }
 });
 
